@@ -1,9 +1,10 @@
 import React from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import NavBar from "../NavBar";
 
 function Home() {
-  return (
+  return (<div>
     <Form>
       <Form.Group controlId="formBasicEmail">
         <Form.Label>Email address</Form.Label>
@@ -27,6 +28,7 @@ function Home() {
         Sign Up
       </Button>
     </Form>
+    </div>
   );
 }
 

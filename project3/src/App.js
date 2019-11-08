@@ -1,28 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import NavBar from './components/NavBar'
-import CharacterInfo from './components/game_components/CharacterInfo'
-import DisplayTerm from "./components/game_components/DisplayTerm"
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import './App.css';
-import MiniMap from './components/game_components/MiniMap';
-
-import PlayerCharacter from "./components/game_components/PlayerCharacter"
+import Home from './components/pages/Home'
+import CharacterTab from './components/pages/CharacterTab'
+import MainGame from './components/pages/MainGame'
+import NavBar from './components/NavBar';
 
 function App() {
-  return (<div className="container-fluid">
-    <NavBar />
-    <div className="row align-items-end">
-    <div className="col-md">
+  return (
+    <Router><div>
+      <NavBar />
+      <Switch>
 
-    <DisplayTerm />
-    </div>
+      <Route exact path="/">
+        <Home />
+      </Route>
 
-    <div className="col-md-auto">
-    <MiniMap />
-    <PlayerCharacter info="true" />
-    </div>
-    </div>
-    </div>
+      <Route path="/play">
+        <MainGame />
+      </Route>
+
+      <Route path="/char">
+        <CharacterTab />
+      </Route>
+
+      </Switch>
+      </div>
+    </Router>
   );
 }
 
