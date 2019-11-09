@@ -33,6 +33,10 @@ class PlayerCharacter extends React.Component{
             return(
             <CharacterInfo characterName={this.getPCharacterName()} age={this.getPCharacterAge()} appearance={this.getPCharacterDesc()} skills={this.getPCharacterSkills()} />
             )
+        } else if(this.props.tab){
+            return(
+                <CharacterInfo characterName={this.getPCharacterName()} age={this.getPCharacterAge()} appearance={this.getPCharacterDesc()} skills={this.getPCharacterSkills()} />
+            )
         }
     }
     
