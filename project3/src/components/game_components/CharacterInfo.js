@@ -10,7 +10,7 @@ function CharacterInfo(props){
                     Age: {props.age}
                 </li>
                 <li>
-                    Appearance: {props.appearance}
+                    Weight: {props.weight}
                 </li>
                 <li>
                     Skills: {props.skills}

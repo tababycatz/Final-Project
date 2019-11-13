@@ -1,44 +1,27 @@
 import React from 'react'
 import CharacterInfo from './CharacterInfo'
+import API from '../utils/API'
 
-class PlayerCharacter extends React.Component{
-    constructor(props){
-        super(props)
-    }
-
-    getPlayerObject(){
-        //get the player's name from SQL
-    }
-
-    getPCharacterName(){
-        
-        return "Frankie"
-    }
-
-
-    getPCharacterAge(){
-        return "8"
-    }
+function PlayerCharacter(props){
     
-    getPCharacterDesc(){
-        return "a small dog"
-    }
+    // getPlayerObject(){
+    //     //get the player's name from SQL
+    //     API.getOneChar(0).then(function (err,res) {
+    //         if(err){
+    //             return err;
+    //         } else {
+    //             return res;
+    //         }
+    //     })
+    // }
 
-    getPCharacterSkills(){
-        return "nunchucks"
-    }
-
-    render(){
-        if(this.props.info){
+    console.log(props)
+        if(props.info){
+            
             return(
-            <CharacterInfo characterName={this.getPCharacterName()} age={this.getPCharacterAge()} appearance={this.getPCharacterDesc()} skills={this.getPCharacterSkills()} />
-            )
-        } else if(this.props.tab){
-            return(
-                <CharacterInfo characterName={this.getPCharacterName()} age={this.getPCharacterAge()} appearance={this.getPCharacterDesc()} skills={this.getPCharacterSkills()} />
+            <CharacterInfo characterName={props.playerChar.char_name} age={props.playerChar.age} weight={props.playerChar.weight} skills={props.playerChar.skills} />
             )
         }
-    }
     
 }
 

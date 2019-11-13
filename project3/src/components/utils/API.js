@@ -1,20 +1,20 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
-  getBooks: function() {
-    return axios.get("/api/books");
+  // gets all rooms
+  getRooms: function() {
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getRooms");
   },
-  // Gets the book with the given id
-  getBook: function(id) {
-    return axios.get("/api/books/" + id);
+  // gets the character with this id
+  getOneChar: function(id) {
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getOneChar/" + id);
   },
-  // Deletes the book with the given id
-  deleteBook: function(id) {
-    return axios.delete("/api/books/" + id);
+  // gets all characters
+  getChars: function() {
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getChars");
   },
-  // Saves a book to the database
-  saveBook: function(bookData) {
-    return axios.post("/api/books", bookData);
+  // updates character info
+  updateChar: function(id) {
+    return axios.post("https://dogmudserv.herokuapp.com/dmxapi/updateChar", id);
   }
 };
