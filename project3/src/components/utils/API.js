@@ -16,5 +16,8 @@ export default {
   // updates character info
   updateChar: function(id) {
     return axios.post("https://dogmudserv.herokuapp.com/dmxapi/updateChar", id);
+  },
+  getRoom: function (id) {
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getroominv/" + id);
   }
 };
