@@ -8,7 +8,10 @@ class Card extends React.Component{
 
 
     render(){
-        if(!this.props.interactable){
+        //change to a switch statement
+
+        switch(this.props.type){
+            case("base"):
             return(
                 <div className="card">
                     <div className="card-body">
@@ -20,9 +23,9 @@ class Card extends React.Component{
                         </p>
                     </div>
                 </div>
-        )} else {
-            return(
-                <div className="card">
+        )
+        case("room"): return(
+            <div className="card">
                     <div className="card-body">
                         <h5 className="card-title">
                             {this.props.title}
@@ -33,12 +36,28 @@ class Card extends React.Component{
                         <button className="btn btn-primary" onClick={this.props.click1}>
                             {this.props.click1Text}
                         </button>
-                        <button className="btn btn-primary" onClick={this.props.click2}>
-                            {this.props.click2Text}
-                        </button>
                     </div>
-                </div>
-            )
+                </div>);
+        case("objects"): 
+        let bttnArray = []
+        this.props.objects.forEach(obj => {
+            let newBtn = <button className="btn btn-primary" onClick={this.props.objClickFunct(bttnArray.length)}>{obj.object_name}</button>
+            bttnArray.push(newBtn);
+        });
+        return(
+        <div className="card">
+        <div className="card-body">
+            <h5 className="card-title">
+                {this.props.title}
+            </h5>
+            <p className="card-text">
+                {this.props.body}
+            </p>
+            {bttnArray}
+        </div>
+    </div>)
+
+            
         }
 }
 }

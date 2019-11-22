@@ -1,23 +1,36 @@
 import React from 'react';
 import Card from './Card';
+import API from '../utils/API'
 
 class DisplayTerm extends React.Component {
     constructor(props){
         super(props);
+        console.log(props)
         this.state = {
 
         }
+        
         this.buttons = [];
-        for(let i=0;i<5;i++){
-            this.buttons.push(<Card key={i} title="" body="this is descriptive text" interactable="true" click1Text="Yes" click2Text="No"/>)
-        }
+        
+    }
+
+    componentDidMount(){
+        // this.checkRoom();
+
+    }
+
+    
+
+    checkRoom(){
+        this.props.refreshFunction();  
+        setInterval(this.handleChange, 1000);  
     }
 
     render() {
         // var rendy = <InputChoice question="THIS IS A QUESTION"/>
         return(
             <div style={{backgroundColor:"pink", height:"100%", width:"100%"}}>
-            {this.buttons}
+            {this.props.buttons}
             </div>
     )
     }
