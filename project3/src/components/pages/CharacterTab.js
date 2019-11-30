@@ -1,6 +1,6 @@
 import React from 'react'
 import PlayerCharacter from '../game_components/PlayerCharacter'
-import NavBar from '../NavBar'
+import NavBar from '../navbar/NavBar'
 
 class CharacterTab extends React.Component {
     constructor(props){
