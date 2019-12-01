@@ -1,6 +1,4 @@
 import React from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import NavBar from "../src/components/navbar/NavBar";
 import { Router, Route } from 'react-router-dom';
 import history from './history';
