@@ -1,5 +1,5 @@
 import React from 'react'
-import NavBar from '../NavBar'
+import NavBar from '../navbar/NavBar'
 import DisplayTerm from '../game_components/DisplayTerm'
 import MiniMap from '../game_components/MiniMap'
 import PlayerCharacter from '../game_components/PlayerCharacter'
