@@ -19,5 +19,16 @@ export default {
   },
   getRoom: function (id) {
     return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getroominv/" + id);
+  },
+  moveRoom: function(id,dir) {
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/moveChar/" + id + "/" + dir)
+  },
+
+  pickUpObj: function(charID,objID){
+    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID + "/" + objID))
+  },
+  drop: function(charID){
+    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID))
   }
+  
 };

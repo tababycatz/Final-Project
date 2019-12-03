@@ -11,13 +11,15 @@ let bttns = [];
 
 class MainGame extends React.Component {
     state = {
+        playerID: 4,
         char: {},
         currentRoomNum: 3,
         currentRoomInv: {},
         allR: {},
         button: [],
         lastRoomLooked: 0,
-        errorModalOpen: false
+        errorModalOpen: false,
+        playerInventory:[]
     }
 
     constructor(props){
@@ -26,15 +28,17 @@ class MainGame extends React.Component {
 
         let allRms = {};
 
+        API.getOneChar(this.state.playerID).then(({data:charObj}) => {
+            this.state = {currentRoomNum: charObj.location}
+        }).catch(err => console.log(err))
+
 
         API.getRooms().then(({data:allRooms}) => {
             this.allRms = allRooms;
 
             this.state ={allR:this.allRms}
 
-        }).catch(err => console.log(err))
-
-
+        }).catch(err => console.log(err));
     }
     
 
@@ -91,7 +95,20 @@ class MainGame extends React.Component {
     }
 
     pickUpObject = object => {
-
+        bttns = []
+        API.pickUpObj(this.state.playerID,object.object_id).then(({data:newData}) => {
+            console.log(newData);
+            if(newData.status == 1){
+                this.setState({playerInventory:newData})
+                let responseCard = <Card key="0" type="error" title="Now Holding" body={newData.message} click2={this.pullRoom}/>
+                bttns.push(responseCard)
+                this.setState({button:bttns});
+            } else {
+                let responseCard = <Card key="0" type="error" title="Could not Pick Up" body={"This object is currently: " + newData.message} click2={this.pullRoom} />
+                bttns.push(responseCard)
+                this.setState({button:bttns});
+            }
+        })
     }
 
     lookInRoom = () => {
@@ -108,10 +125,15 @@ class MainGame extends React.Component {
     }
 
     movePlayer = dir => {
-        if(this.state.currentRoomNum != dir){
-            this.setState({currentRoomNum:dir})
-            this.newRoom()
-        }
+        API.moveRoom(this.state.playerID,dir).then(({data: res}) => {
+            console.log(res)
+            if(res){
+                this.setState({currentRoomNum:res.room})
+                this.newRoom()
+            } else {
+                console.log("Can't move that way")
+            }
+        })
     }
 
     newRoom = () => {
