@@ -11,13 +11,16 @@ let bttns = [];
 
 class MainGame extends React.Component {
     state = {
+        playerID: 4,
         char: {},
         currentRoomNum: 3,
         currentRoomInv: {},
         allR: {},
         button: [],
         lastRoomLooked: 0,
-        errorModalOpen: false
+        errorModalOpen: false,
+        playerInventory:[],
+        map:[]
     }
 
     constructor(props){
@@ -26,15 +29,25 @@ class MainGame extends React.Component {
 
         let allRms = {};
 
+        API.getOneChar(this.state.playerID).then(({data:charObj}) => {
+            this.state = {currentRoomNum: charObj.location}
+        }).catch(err => console.log(err))
+
 
         API.getRooms().then(({data:allRooms}) => {
             this.allRms = allRooms;
 
             this.state ={allR:this.allRms}
 
-        }).catch(err => console.log(err))
+        }).catch(err => console.log(err));
 
-
+        API.getMap(this.state.playerID).then(({data:mapData}) => {
+            this.maps = mapData.map
+            console.log(mapData.map)
+            this.state = {map:this.maps}
+            // console.log(this.state.map)
+        })
+        
     }
     
 
@@ -91,7 +104,20 @@ class MainGame extends React.Component {
     }
 
     pickUpObject = object => {
-
+        bttns = []
+        API.pickUpObj(this.state.playerID,object.object_id).then(({data:newData}) => {
+            console.log(newData);
+            if(newData.status == 1){
+                this.setState({playerInventory:newData})
+                let responseCard = <Card key="0" type="error" title="Now Holding" body={newData.message} click2={this.pullRoom}/>
+                bttns.push(responseCard)
+                this.setState({button:bttns});
+            } else {
+                let responseCard = <Card key="0" type="error" title="Could not Pick Up" body={"This object is currently: " + newData.message} click2={this.pullRoom} />
+                bttns.push(responseCard)
+                this.setState({button:bttns});
+            }
+        })
     }
 
     lookInRoom = () => {
@@ -108,15 +134,25 @@ class MainGame extends React.Component {
     }
 
     movePlayer = dir => {
-        if(this.state.currentRoomNum != dir){
-            this.setState({currentRoomNum:dir})
-            this.newRoom()
-        }
+        API.moveRoom(this.state.playerID,dir).then(({data: res}) => {
+            console.log(res)
+            if(res.status == 1){
+                this.setState({currentRoomNum:res.room})
+                this.newRoom()
+            } else {
+                console.log("Can't move that way")
+            }
+        })
     }
 
     newRoom = () => {
         bttns = []
         var newRoomButton = <Card key="1" type="room" title="New Room Entered"  body={this.state.allR[this.state.currentRoomNum].descript} click1Text="Check Room" click1={this.pullRoom}/>
+        API.getMap(this.state.playerID).then(({data:mapData}) => {
+            this.maps = mapData.map
+            console.log(mapData.map)
+            this.setState({map:this.maps})
+        })
         bttns.push(newRoomButton)
         this.setState({button:bttns})
     }
@@ -147,7 +183,7 @@ class MainGame extends React.Component {
     </div>
 
     <div className="col-md-auto">
-    <MiniMap move={this.movePlayer}/>
+    <MiniMap map={this.state.map} move={this.movePlayer}/>
     <PlayerCharacter info="true" playerChar={this.state.char}/>
     </div>
     </div>
