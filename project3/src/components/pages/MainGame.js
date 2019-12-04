@@ -19,7 +19,8 @@ class MainGame extends React.Component {
         button: [],
         lastRoomLooked: 0,
         errorModalOpen: false,
-        playerInventory:[]
+        playerInventory:[],
+        map:[]
     }
 
     constructor(props){
@@ -39,6 +40,14 @@ class MainGame extends React.Component {
             this.state ={allR:this.allRms}
 
         }).catch(err => console.log(err));
+
+        API.getMap(this.state.playerID).then(({data:mapData}) => {
+            this.maps = mapData.map
+            console.log(mapData.map)
+            this.state = {map:this.maps}
+            // console.log(this.state.map)
+        })
+        
     }
     
 
@@ -127,7 +136,7 @@ class MainGame extends React.Component {
     movePlayer = dir => {
         API.moveRoom(this.state.playerID,dir).then(({data: res}) => {
             console.log(res)
-            if(res){
+            if(res.status == 1){
                 this.setState({currentRoomNum:res.room})
                 this.newRoom()
             } else {
@@ -139,6 +148,11 @@ class MainGame extends React.Component {
     newRoom = () => {
         bttns = []
         var newRoomButton = <Card key="1" type="room" title="New Room Entered"  body={this.state.allR[this.state.currentRoomNum].descript} click1Text="Check Room" click1={this.pullRoom}/>
+        API.getMap(this.state.playerID).then(({data:mapData}) => {
+            this.maps = mapData.map
+            console.log(mapData.map)
+            this.setState({map:this.maps})
+        })
         bttns.push(newRoomButton)
         this.setState({button:bttns})
     }
@@ -169,7 +183,7 @@ class MainGame extends React.Component {
     </div>
 
     <div className="col-md-auto">
-    <MiniMap move={this.movePlayer}/>
+    <MiniMap map={this.state.map} move={this.movePlayer}/>
     <PlayerCharacter info="true" playerChar={this.state.char}/>
     </div>
     </div>

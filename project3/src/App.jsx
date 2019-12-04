@@ -5,6 +5,7 @@ import history from './history';
 import UserProvier from './context/UserProvider';
 import Home from './components/pages/Home';
 import Profile from './components/pages/Profile';
+import MainGame from './components/pages/MainGame';
 
 
 const App = () => {
@@ -13,9 +14,10 @@ const App = () => {
           <Router history={history}>
             <UserProvier>
               <Route path='/' component={NavBar} />
-              <Route path='/' component={Profile} />
+              {/* <Route path='/home' component={Profile} /> */}
+              <Route path="/play" exact component={MainGame} />
             </UserProvier>
-              <Route path='/' exact component={Home} />
+              {/* <Route path='/home' exact component={Home} /> */}
           </Router>
     </div>
     );

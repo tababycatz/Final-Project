@@ -23,12 +23,14 @@ export default {
   moveRoom: function(id,dir) {
     return axios.get("https://dogmudserv.herokuapp.com/dmxapi/moveChar/" + id + "/" + dir)
   },
-
   pickUpObj: function(charID,objID){
     return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID + "/" + objID))
   },
-  drop: function(charID){
+  dropObj: function(charID){
     return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID))
+  },
+  getMap: function(charID) {
+    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/getviewport/" + charID))
   }
   
 };
