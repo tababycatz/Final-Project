@@ -7,7 +7,6 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Navbar from "../navbar/NavBar";
-import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -29,63 +28,17 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      username: '',
-      password: '',
-      messageFromServer: '',
-      showError: false,
-      registerError: false,
-      loginError: false,
-    };
-  }
-
-  handleChange = name => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  registerUser = async (e) => {
-    e.preventDefault();
-    const {
- first_name, last_name, username, password, email 
-} = this.state;
-    if (username === '' || password === '' || email === '') {
-      this.setState({
-        showError: true,
-        loginError: false,
-        registerError: true,
-      });
-    } else {
-        const response = await axios.post(
-          'http://localhost:3001/register',
-          {
-            first_name,
-            last_name,
-            email,
-            username,
-            password
-          }
-        );
-        };
-      };
-  };
-    
   export default function SignUp() {
     const classes = useStyles();
-  
+
     return (
 <div className="main-body">
     <Navbar />
     <div id="container">
       <div className="row">
+<script src="/__/firebase/7.5.0/firebase-app.js"></script>
+<script src="/__/firebase/init.js"></script>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
