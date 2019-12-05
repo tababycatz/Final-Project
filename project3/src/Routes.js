@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Auth from './pages/Auth';
-import Register from './pages/Register';
-import Login from './pages/Login';
-import Profile from './pages/Profile';
-import UpdateProfile from './pages/UpdateProfile';
-import ForgotPassword from './pages/ForgotPassword';
-import ResetPassword from './pages/ResetPassword';
-import UpdatePassword from './pages/UpdatePassword';
+import Home from './components/pages/Home';
+import Auth from './components/pages/Auth';
+import Register from './components/pages/Register';
+import Login from './components/pages/Login';
+import Profile from './components/pages/Profile';
+import UpdateProfile from './components/pages/UpdateProfile';
+import ForgotPassword from './components/pages/ForgotPassword';
+import ResetPassword from './components/pages/ResetPassword';
+import UpdatePassword from './components/pages/UpdatePassword';
 
 const Routes = () => (
   <div>

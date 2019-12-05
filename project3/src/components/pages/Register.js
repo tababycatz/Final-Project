@@ -12,7 +12,7 @@ import {
   loginButton,
   inputStyle,
   HeaderBar,
-} from '../components/Buttons';
+} from '../buttons';
 
 const title = {
   pageTitle: 'Register Screen',

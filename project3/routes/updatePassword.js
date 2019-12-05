@@ -1,49 +1,6 @@
-/* eslint-disable no-console */
-// import passport from 'passport';
-// import bcrypt from 'bcrypt';
-// import User from '../sequelize';
-
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const User = require ('../sequelize').User;
-
-/**
- * @swagger
- * /updatePassword:
- *   put:
- *     tags:
- *       - Users
- *     name: Update password logged in
- *     summary: Update password while user is already logged in
- *     security:
- *       - bearerAuth: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: body
- *         in: body
- *         schema:
- *           $ref: '#/definitions/User'
- *           type: object
- *           properties:
- *             username:
- *               type: string
- *             password:
- *               type: string
- *         required:
- *           - username
- *           - password
- *     responses:
- *       '200':
- *         description: User's password successfully updated
- *       '403':
- *         description: User is not authorized to change their password
- *       '404':
- *         description: User is not found in db to update
- *
- */
 
 const BCRYPT_SALT_ROUNDS = 12;
 module.exports = (app) => {

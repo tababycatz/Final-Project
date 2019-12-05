@@ -1,6 +1,6 @@
 module.exports = {
 
     session:{
-        cookieKey: "you are awesome"
+        cookieKey: "one step at a time"
     }
 };

@@ -4,10 +4,10 @@ import {
   LinkButtons,
   loginButton,
   registerButton,
-} from '../components/Buttons';
+} from '../buttons';
 
 const title = {
-  pageTitle: 'Home Screen',
+  pageTitle: 'Home',
 };
 
 const Auth = () => (

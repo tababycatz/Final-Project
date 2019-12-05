@@ -3,12 +3,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Table from '@material-ui/core/Table';
 import Button from '@material-ui/core/Button';
 import { Link, Redirect } from 'react-router-dom';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
 
 import {
   LinkButtons,
@@ -19,7 +15,7 @@ import {
   HeaderBar,
   linkStyle,
   forgotButton,
-} from '../components/Buttons';
+} from '../buttons';
 
 const loading = {
   margin: '1em',
@@ -142,7 +138,7 @@ class Profile extends Component {
         <div>
           <HeaderBar title={title} />
           <div style={loading}>
-            Problem fetching user data. Please login again.
+            Problem loading your data. Please try again.
           </div>
           <LinkButtons
             buttonText="Login"
@@ -156,7 +152,7 @@ class Profile extends Component {
       return (
         <div>
           <HeaderBar title={title} />
-          <div style={loading}>Loading User Data...</div>
+          <div style={loading}>Loading</div>
         </div>
       );
     }
@@ -165,33 +161,6 @@ class Profile extends Component {
     }
     return (
       <div>
-        <HeaderBar title={title} />
-        <Table>
-          <TableBody>
-            <TableRow>
-              <TableCell>First Name</TableCell>
-              <TableCell>{first_name}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Last Name</TableCell>
-              <TableCell>{last_name}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Email</TableCell>
-              <TableCell>{email}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>User Name</TableCell>
-              <TableCell>{username}</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Password</TableCell>
-              <TableCell style={{ WebkitTextSecurity: 'disc' }}>
-                {password}
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
         <Button
           style={deleteButton}
           variant="contained"

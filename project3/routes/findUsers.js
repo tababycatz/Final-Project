@@ -1,41 +1,5 @@
-/* eslint-disable no-console */
-// import passport from 'passport';
-// import User from '../sequelize';
-
 const passport = require('passport');
 const User = require ('../sequelize').User;
-
-/**
- * @swagger
- * /findUser:
- *   get:
- *     tags:
- *       - Users
- *     name: Find user
- *     summary: Finds a user
- *     security:
- *       - bearerAuth: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: query
- *         name: username
- *         schema:
- *           type: string
- *         required:
- *           - username
- *     responses:
- *       '200':
- *         description: A single user object
- *         schema:
- *           $ref: '#/definitions/User'
- *       '401':
- *         description: No auth token / no user found in db with that name
- *       '403':
- *         description: JWT token and username from client don't match
- */
 
 module.exports = (app) => {
   app.get('/findUser', (req, res, next) => {
@@ -67,7 +31,7 @@ module.exports = (app) => {
               message: 'user found in db',
             });
           } else {
-            console.error('no user exists in db with that username');
+            console.error('no user exists in db');
             res.status(401).send('no user exists in db with that username');
           }
         });

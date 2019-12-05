@@ -7,7 +7,7 @@ import { linkStyle } from './ButtonStyles';
 const LinkButtons = ({ buttonText, buttonStyle, link }) => (
   <Fragment>
     <Link style={linkStyle} to={link}>
-      <Button variant="contained" color="primary" style={buttonStyle}>
+      <Button variant="outlined" color="disabled" style={buttonStyle}>
         {buttonText}
       </Button>
     </Link>

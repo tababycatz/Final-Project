@@ -1,41 +1,6 @@
-/* eslint-disable no-console */
-// import passport from 'passport';
-// import User from '../sequelize';
-
 const passport = require('passport');
 const User = require ('../sequelize').User;
-/**
- * @swagger
- * /deleteUser:
- *   delete:
- *     tags:
- *       - Users
- *     name: Delete User
- *     summary: Delete user
- *     security:
- *       - bearerAuth: []
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - name: username
- *         in: query
- *         schema:
- *           $ref: '#/definitions/User'
- *           type: string
- *         required:
- *           - username
- *     responses:
- *       '200':
- *         description: User deleted from db
- *       '403':
- *         description: Authentication error
- *       '404':
- *         description: No user in db with that name
- *       '500':
- *         description: Problem communicating with db
- */
+
 
 module.exports = (app) => {
   app.delete('/deleteUser', (req, res, next) => {

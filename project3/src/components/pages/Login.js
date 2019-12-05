@@ -1,140 +1,94 @@
-/* eslint-disable no-console */
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
 
-import {
-  LinkButtons,
-  SubmitButtons,
-  registerButton,
-  homeButton,
-  loginButton,
-  forgotButton,
-  inputStyle,
-  HeaderBar,
-} from '../components/Buttons';
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(1),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-const title = {
-  pageTitle: 'Login Screen',
-};
+export default function SignIn() {
+  const classes = useStyles();
 
-class Login extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      username: '',
-      password: '',
-      loggedIn: false,
-      showError: false,
-      showNullError: false,
-    };
-  }
-
-  handleChange = name => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  loginUser = async (e) => {
-    e.preventDefault();
-    const { username, password } = this.state;
-    if (username === '' || password === '') {
-      this.setState({
-        showError: false,
-        showNullError: true,
-        loggedIn: false,
-      });
-    } else {
-      try {
-        const response = await axios.post('http://localhost:3001/loginUser', {
-          username,
-          password,
-        });
-        localStorage.setItem('JWT', response.data.token);
-        this.setState({
-          loggedIn: true,
-          showError: false,
-          showNullError: false,
-        });
-      } catch (error) {
-        console.error(error.response.data);
-        if (
-          error.response.data === 'bad username'
-          || error.response.data === 'passwords do not match'
-        ) {
-          this.setState({
-            showError: true,
-            showNullError: false,
-          });
-        }
-      }
-    }
-  };
-
-  render() {
-    const {
-      username,
-      password,
-      showError,
-      loggedIn,
-      showNullError,
-    } = this.state;
-    if (!loggedIn) {
-      return (
-        <div>
-          <HeaderBar title={title} />
-          <form className="profile-form" onSubmit={this.loginUser}>
-            <TextField
-              style={inputStyle}
-              id="username"
-              label="username"
-              value={username}
-              onChange={this.handleChange('username')}
-              placeholder="Username"
-            />
-            <TextField
-              style={inputStyle}
-              id="password"
-              label="password"
-              value={password}
-              onChange={this.handleChange('password')}
-              placeholder="Password"
-              type="password"
-            />
-            <SubmitButtons buttonStyle={loginButton} buttonText="Login" />
-          </form>
-          {showNullError && (
-            <div>
-              <p>The username or password cannot be null.</p>
-            </div>
-          )}
-          {showError && (
-            <div>
-              <p>
-                That username or password isn&apos;t recognized. Please try
-                again or register now.
-              </p>
-              <LinkButtons
-                buttonText="Register"
-                buttonStyle={registerButton}
-                link="/register"
-              />
-            </div>
-          )}
-          <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
-          <LinkButtons
-            buttonStyle={forgotButton}
-            buttonText="Forgot Password?"
-            link="/forgotPassword"
+  return (
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={classes.form} noValidate>
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
           />
-        </div>
-      );
-    }
-    return <Redirect to={`/userProfile/${username}`} />;
-  }
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+          />
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign In
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                Forgot password?
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link href="#" variant="body2">
+                {"Don't have an account? Sign Up"}
+              </Link>
+            </Grid>
+          </Grid>
+        </form>
+      </div>
+      <Box mt={8}>
+      </Box>
+    </Container>
+  );
 }
-
-export default Login;

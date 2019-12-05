@@ -1,58 +1,12 @@
-/* eslint-disable no-console */
-// import bcrypt from 'bcrypt';
-// import Sequelize from 'sequelize';
-// import User from '../sequelize';
-
 const bcrypt = require('bcryptjs');
 const Sequelize = require('sequelize');
 const User = require ('../sequelize').User;
 
-
-
-// eslint-disable-next-line prefer-destructuring
 const Op = Sequelize.Op;
-
-/**
- * @swagger
- * /updatePasswordViaEmail:
- *   put:
- *     tags:
- *       - Users
- *     name: Update user's password
- *     summary: Update user's password after they've forgotten it
- *     consumes:
- *       - application/json
- *     produces:
- *       - application/json
- *     parameters:
- *       - in: body
- *         name: body
- *         schema:
- *           $ref: '#/definitions/User'
- *           type: object
- *           properties:
- *             username:
- *               type: string
- *             password:
- *               type: string
- *             resetPasswordToken:
- *               type: string
- *         required:
- *           - username
- *           - password
- *           - resetPasswordToken
- *     responses:
- *       '200':
- *         description: User's password successfully updated
- *       '401':
- *         description: No user found in the database to update
- *       '403':
- *         description: Password reset link is invalid or has expired
- */
 
 const BCRYPT_SALT_ROUNDS = 12;
 module.exports = app => {
-  app.put('/updatePasswordViaEmail', (req, res) => {
+  app.put('/updatepasswordemail', (req, res) => {
     User.findOne({
       where: {
         username: req.body.username,

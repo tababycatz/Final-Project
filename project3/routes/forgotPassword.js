@@ -1,8 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-console */
-// import crypto from 'crypto';
-// import User from '../sequelize';
-
 const crypto = require ('crypto');
 const User = require ('../sequelize').User;
 
@@ -71,14 +66,13 @@ module.exports = (app) => {
         });
 
         const mailOptions = {
-          from: 'mySqlDemoEmail@gmail.com',
+          from: 'dogMUD@gmail.com',
           to: `${user.email}`,
-          subject: 'Link To Reset Password',
+          subject: 'Link To Reset Your Password',
           text:
-            'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n'
-            + 'Please click on the following link, or paste this into your browser to complete the process within one hour of receiving it:\n\n'
+            'Please click the link below to reset your password.\n\n'
             + `http://localhost:3000/reset/${token}\n\n`
-            + 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
+            + 'Link will expire within the hour.\n',
         };
 
         console.log('sending mail');

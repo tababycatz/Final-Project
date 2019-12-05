@@ -30,18 +30,18 @@
  */
 
 module.exports = (sequelize, type) => sequelize.define('user', {
-  id: {
+  user_id: {
     type: type.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  first_name: type.STRING,
-  last_name: type.STRING,
-  email: {
+  username: {
     type: type.STRING,
     allowNull: false,
   },
-  username: {
+  first_name: type.STRING,
+  last_name: type.STRING,
+  email: {
     type: type.STRING,
     allowNull: false,
   },

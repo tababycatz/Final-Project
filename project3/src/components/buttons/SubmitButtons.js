@@ -7,8 +7,8 @@ const SubmitButtons = ({ buttonText, buttonStyle }) => (
     <Button
       style={buttonStyle}
       type="submit"
-      variant="contained"
-      color="primary"
+      variant="outlined"
+      color="disabled"
     >
       {buttonText}
     </Button>

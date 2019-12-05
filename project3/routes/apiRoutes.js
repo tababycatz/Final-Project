@@ -1,32 +1,9 @@
-const orm = require("../controllers/orm")
 const nodemailer = require('nodemailer');
 
 
 module.exports = function (app) {
 
-    app.get("/api/all-reservations", (req, res) => orm.selectAllRes((data) => res.json(data)))
-
-    app.get("/api/unavailable-tables/:date/:time/:partySize", (req, res) => orm.selectUnAvailableTables(req.params.date, req.params.time, req.params.partySize, (data) => res.json(data)))
-
-    app.get("/api/all-tables", (req, res) => orm.selectAllTables(data => res.json(data)))
-
-    app.get("/api/open-tables", (req, res) => orm.selectOpenTables(data => res.json(data)))
-
-    app.put("/api/seat-customer/:tableID/:custID", (req, res) => orm.seatCustomer(req.params.tableID, req.params.custID, data => res.json(data)))
-
-    app.put("/api/clear-table/:tableID", (req, res) => orm.clearTable(req.params.tableID, data => res.json(data)))
-
-    app.post("/api/make-reservation", (req, res) => {
-        console.log(req.body)
-        orm.makeReservation(req.body.dateOfReservation, req.body.timeSlot, req.body.custID, req.body.tableID, (data) => res.json(data))
-    })
-
-    app.delete("/api/cancel-reservation", (req, res) => {
-        console.log(req.body)
-        orm.cancelReservation(req.body.reservationID, (data) => res.json(data))
-    })
-
-
+    
     app.post("/confirm-reservation", (req, res) => {
 
         let hour = parseInt(req.body.time.substring(0,2))
