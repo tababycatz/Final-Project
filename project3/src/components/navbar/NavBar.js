@@ -1,74 +1,66 @@
-import React, { useContext } from "react";
-import {Link} from 'react-router-dom';
-import UserDropDown from "./UserDropDown";
-import UserProvider from "../../context/UserProvider";
-import { data } from "../../data";
-import _ from "lodash";
-import HomeIcon from "@material-ui/icons/Home";
-import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import LogoutIcon from "@material-ui/icons/MeetingRoom";
+import React from "react";
+import Link from '@material-ui/core/Link';
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import AppBar from '@material-ui/core/AppBar';
+import HomeIcon from '@material-ui/icons/Home';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import PersonIcon from '@material-ui/icons/Person';
+import { makeStyles } from '@material-ui/core/styles';
 
-
-// function NavBar(props) {
 
 const NavBar = () => {
-  const userData = useContext(UserProvider.context);
-  const loginType = !_.isEmpty(userData) ? _.find(data, d => d.name === userData.provider) : {};
+ 
+  const useStyles = makeStyles(theme => ({
+    root: {
+      flexGrow: 1,
+    },
+    PersonIcon: {
+      marginRight: theme.spacing(6),
+    },
+    PlayArrowIcon: {
+      marginRight: theme.spacing(4),
+    },
+    LoginButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+    },
+  }));
+  
+  const classes = useStyles();
   
   return (
-    <div className="menu-bar">
-            {
-              !_.isEmpty(userData) &&
-              <Link className="btn menu-btn" to="/profile" title={`${loginType.name} data`}>
-                    <div className="app-icon-container" style={{ backgroundColor: loginType.color }}>
-                        <img
-                            className="btn-icon"
-                            src={loginType.img}
-                            alt={loginType.alt}
-                            style={{ position: "absolute", top: 17, paddingLeft: 5 }}
-                            />
-                    </div>
-                </Link>
-            }
-
-            {
-              _.isEmpty(userData) &&
-              <a className="btn menu-btn" href="/">
-                      <Link to="/" className="nav-link" title="Home">
-                        <HomeIcon /> dogMUD
-                      </Link>
-                </a>
-            }
-
-            {
-              !_.isEmpty(userData) &&
-              <Link className="btn menu-btn" to="/profile" title="Profile">
-                    <AccountCircleIcon />
-                </Link>
-            }
-
-            {
-              <Link to="/play" className="nav-link" title="Play">play</Link>
-            }
-
-            {
-              <Link to="/char" className="nav-link" title="Character">character</Link>
-            }
-
-            <UserDropDown />
-
-            {
-              !_.isEmpty(userData) &&
-              <a
-              className="btn menu-btn"
-              href={"/auth/logout"}
-              title="Logout"
-              style={{ float: "right" }}
-              >
-                    <LogoutIcon />
-                </a>
-            }
-        </div>
+    <React.Fragment>
+          <CssBaseline />
+          <Container fixed>
+            <div className='menu-bar'>
+            <AppBar position="static">
+              <Toolbar>
+              <Typography variant="h6" className={classes.title}>
+              <Link href="/"  className="nav-link" title='Home'color="inherit">
+                  <HomeIcon color="inherit"/> dogMUD
+              </Link>
+              </Typography>
+              <Typography variant="h6" className={classes.title}>
+              <Link href="/play" className="nav-link" title='Play' color="inherit">
+                  <PlayArrowIcon color="inherit"/> Play
+              </Link>
+              </Typography>
+              <Typography variant="h6" className={classes.title}>
+              <Link href="/char" className="nav-link" title='Character' color="inherit">
+                  <PersonIcon color="inherit"/> Character
+              </Link>
+              </Typography>
+              </Toolbar>
+              </AppBar>
+              </div>
+          </Container>
+    </React.Fragment>
+          
     );
   };
   
