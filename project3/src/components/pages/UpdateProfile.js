@@ -1,29 +1,17 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
 
-import {
-  LinkButtons,
-  SubmitButtons,
-  HeaderBar,
-  homeButton,
-  cancelButton,
-  saveButton,
-  loginButton,
-  inputStyle,
-} from '../buttons';
+
+import axios from 'axios';
 
 const loading = {
   margin: '1em',
   fontSize: '24px',
-};
-
-const title = {
-  pageTitle: 'Update User Profile Screen',
 };
 
 class UpdateProfile extends Component {
@@ -114,7 +102,7 @@ class UpdateProfile extends Component {
           headers: { Authorization: `JWT ${accessString}` },
         },
       );
-      // eslint-disable-next-line no-unused-vars
+
       console.log(response.data);
       this.setState({
         updated: true,
@@ -129,7 +117,6 @@ class UpdateProfile extends Component {
     }
   };
 
-  // eslint-disable-next-line consistent-return
   render() {
     const {
       first_name,
@@ -144,24 +131,29 @@ class UpdateProfile extends Component {
 
     if (error) {
       return (
+        <Container>
+          <CssBaseline />
         <div>
-          <HeaderBar title={title} />
           <p style={loading}>
-            There was a problem accessing your data. Please go login again.
+            There was a problem retrieving your data, please try again.
           </p>
-          <LinkButtons
-            style={loginButton}
-            buttonText="Go Login"
-            link="/login"
-          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="outlined"
+            color="primary"
+            // className={classes.submit}
+          >
+            Sign In
+          </Button>
         </div>
+        </Container>
       );
     }
     if (loadingUser !== false) {
       return (
         <div>
-          <HeaderBar title={title} />
-          <p style={loading}>Loading user data...</p>
+          <p style={loading}>Loading</p>
         </div>
       );
     }
@@ -171,10 +163,8 @@ class UpdateProfile extends Component {
     if (loadingUser === false) {
       return (
         <div>
-          <HeaderBar title={title} />
           <form className="profile-form" onSubmit={this.updateUser}>
             <TextField
-              style={inputStyle}
               id="first_name"
               label="first_name"
               value={first_name}
@@ -182,7 +172,6 @@ class UpdateProfile extends Component {
               placeholder="First Name"
             />
             <TextField
-              style={inputStyle}
               id="last_name"
               label="last_name"
               value={last_name}
@@ -190,7 +179,6 @@ class UpdateProfile extends Component {
               placeholder="Last Name"
             />
             <TextField
-              style={inputStyle}
               id="email"
               label="email"
               value={email}
@@ -198,7 +186,6 @@ class UpdateProfile extends Component {
               placeholder="Email"
             />
             <TextField
-              style={inputStyle}
               id="username"
               label="username"
               value={username}
@@ -206,7 +193,6 @@ class UpdateProfile extends Component {
               disabled
             />
             <TextField
-              style={inputStyle}
               id="password"
               label="password"
               value={password}
@@ -214,13 +200,12 @@ class UpdateProfile extends Component {
               disabled
               type="password"
             />
-            <SubmitButtons buttonStyle={saveButton} buttonText="Save Changes" />
+            <Button buttonText="Save Changes" />
           </form>
-          <LinkButtons buttonStyle={homeButton} buttonText="Go Home" link="/" />
-          <LinkButtons
-            buttonStyle={cancelButton}
+          <Button 
+            variant="oulined"
+            color="secondary"
             buttonText="Cancel Changes"
-            link={`/userProfile/${username}`}
           />
         </div>
       );

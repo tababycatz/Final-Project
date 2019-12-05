@@ -1,188 +1,128 @@
-/* eslint-disable no-console */
-/* eslint-disable camelcase */
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import axios from 'axios';
+import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Navbar from "../navbar/NavBar";
 
-import {
-  LinkButtons,
-  SubmitButtons,
-  registerButton,
-  homeButton,
-  loginButton,
-  inputStyle,
-  HeaderBar,
-} from '../buttons';
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-const title = {
-  pageTitle: 'Register Screen',
-};
 
-class Register extends Component {
-  constructor(props) {
-    super(props);
+  export default function SignUp() {
+    const classes = useStyles();
 
-    this.state = {
-      first_name: '',
-      last_name: '',
-      email: '',
-      username: '',
-      password: '',
-      messageFromServer: '',
-      showError: false,
-      registerError: false,
-      loginError: false,
-    };
-  }
-
-  handleChange = name => (event) => {
-    this.setState({
-      [name]: event.target.value,
-    });
-  };
-
-  registerUser = async (e) => {
-    e.preventDefault();
-    const {
- first_name, last_name, username, password, email 
-} = this.state;
-    if (username === '' || password === '' || email === '') {
-      this.setState({
-        showError: true,
-        loginError: false,
-        registerError: true,
-      });
-    } else {
-      try {
-        const response = await axios.post(
-          'http://localhost:3001/registerUser',
-          {
-            first_name,
-            last_name,
-            email,
-            username,
-            password,
-          },
-        );
-
-        console.log(response)
-        this.setState({
-          messageFromServer: response.data.message,
-          showError: false,
-          loginError: false,
-          registerError: false,
-        });
-      } catch (error) {
-        console.error("ERROR: " , error);
-        // if (error.response.data === 'username or email already taken') {
-        //   this.setState({
-        //     showError: true,
-        //     loginError: true,
-        //     registerError: false,
-        //   });
-        // }
-      }
-    }
-  };
-
-  // eslint-disable-next-line consistent-return
-  render() {
-    const {
-      first_name,
-      last_name,
-      email,
-      username,
-      password,
-      messageFromServer,
-      showError,
-      loginError,
-      registerError,
-    } = this.state;
-
-    if (messageFromServer === '') {
-      return (
-        <div>
-          <HeaderBar title={title} />
-          <form className="profile-form" onSubmit={this.registerUser}>
-            <TextField
-              style={inputStyle}
-              id="first_name"
-              label="first_name"
-              value={first_name}
-              onChange={this.handleChange('first_name')}
-              placeholder="First Name"
-            />
-            <TextField
-              style={inputStyle}
-              id="last_name"
-              label="last_name"
-              value={last_name}
-              onChange={this.handleChange('last_name')}
-              placeholder="Last Name"
-            />
-            <TextField
-              style={inputStyle}
-              id="email"
-              label="email"
-              value={email}
-              onChange={this.handleChange('email')}
-              placeholder="Email"
-            />
-            <TextField
-              style={inputStyle}
-              id="username"
-              label="username"
-              value={username}
-              onChange={this.handleChange('username')}
-              placeholder="Username"
-            />
-            <TextField
-              style={inputStyle}
-              id="password"
-              label="password"
-              value={password}
-              onChange={this.handleChange('password')}
-              placeholder="Password"
-              type="password"
-            />
-            <SubmitButtons buttonStyle={registerButton} buttonText="Register" />
-          </form>
-          {showError === true && registerError === true && (
-            <div>
-              <p>Username, password and email are required fields.</p>
-            </div>
-          )}
-          {showError === true && loginError === true && (
-            <div>
-              <p>
-                That username or email is already taken. Please choose another
-                or login.
-              </p>
-              <LinkButtons
-                buttonText="Login"
-                buttonStyle={loginButton}
-                link="/login"
+    return (
+<div className="main-body">
+    <Navbar />
+    <div id="container">
+      <div className="row">
+<script src="/__/firebase/7.5.0/firebase-app.js"></script>
+<script src="/__/firebase/init.js"></script>
+    <Container component="main" maxWidth="xs">
+      <CssBaseline />
+      <div className={classes.paper}>
+        <Typography component="h1" variant="h5">
+          Sign up
+        </Typography>
+        <form className={classes.form} noValidate>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="first_name"
+                label="first_name"
+                // value={first_name}
+                // onChange={this.handleChange('first_name')}
+                placeholder="First Name"
+                variant="outlined"
+                required
+                fullWidth
               />
-            </div>
-          )}
-          <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
-        </div>
-      );
-    }
-    if (messageFromServer === 'user created') {
-      return (
-        <div>
-          <HeaderBar title={title} />
-          <h3>User successfully registered!</h3>
-          <LinkButtons
-            buttonText="Go Login"
-            buttonStyle={loginButton}
-            link="/login"
-          />
-        </div>
-      );
-    }
-  }
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                id="last_name"
+                label="last_name"
+                // value={last_name}
+                // onChange={this.handleChange('first_name')}
+                placeholder="Last Name"
+                variant="outlined"
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="username"
+                label="username"
+                // value={username}
+                // onChange={this.handleChange('first_name')}
+                placeholder="username"
+                variant="outlined"
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="email"
+                label="email"
+                // value={email}
+                // onChange={this.handleChange('first_name')}
+                placeholder="email"
+                variant="outlined"
+                required
+                fullWidth
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                id="password"
+                label="password"
+                // value={password}
+                // onChange={this.handleChange('first_name')}
+                placeholder="password"
+                variant="outlined"
+                required
+                fullWidth
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+          >
+            Sign Up
+          </Button>
+        </form>
+      </div>
+    </Container>
+    </div>
+    </div>
+  </div>
+  );
 }
 
-export default Register;

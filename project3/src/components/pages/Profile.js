@@ -1,21 +1,10 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import { Link, Redirect } from 'react-router-dom';
 
-import {
-  LinkButtons,
-  deleteButton,
-  updateButton,
-  loginButton,
-  logoutButton,
-  HeaderBar,
-  linkStyle,
-  forgotButton,
-} from '../buttons';
+
 
 const loading = {
   margin: '1em',
@@ -136,22 +125,20 @@ class Profile extends Component {
     if (error) {
       return (
         <div>
-          <HeaderBar title={title} />
           <div style={loading}>
             Problem loading your data. Please try again.
           </div>
-          <LinkButtons
-            buttonText="Login"
-            buttonStyle={loginButton}
-            link="/login"
-          />
+          <Button
+            link="/login">
+              Login
+            </Button>
+          
         </div>
       );
     }
     if (isLoading) {
       return (
         <div>
-          <HeaderBar title={title} />
           <div style={loading}>Loading</div>
         </div>
       );
@@ -162,32 +149,28 @@ class Profile extends Component {
     return (
       <div>
         <Button
-          style={deleteButton}
           variant="contained"
           color="primary"
           onClick={this.deleteUser}
         >
           Delete User
         </Button>
-        <LinkButtons
-          buttonStyle={updateButton}
-          buttonText="Update User"
+        <Button
           link={`/updateUser/${username}`}
-        />
-        <LinkButtons
-          buttonStyle={forgotButton}
+        >
+          Update user
+          </Button>
+        <Button
           buttonText="Update Password"
           link={`/updatePassword/${username}`}
         />
         <Button
-          style={logoutButton}
           variant="contained"
           color="primary"
           onClick={this.logout}
+          link="/"
         >
-          <Link style={linkStyle} to="/">
             Logout
-          </Link>
         </Button>
       </div>
     );
@@ -195,7 +178,6 @@ class Profile extends Component {
 }
 
 Profile.propTypes = {
-  // eslint-disable-next-line react/require-default-props
   match: PropTypes.shape({
     params: PropTypes.shape({
       username: PropTypes.string.isRequired,

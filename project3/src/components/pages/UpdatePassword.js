@@ -1,29 +1,13 @@
-/* eslint-disable no-console */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
-
-import {
-  LinkButtons,
-  SubmitButtons,
-  HeaderBar,
-  homeButton,
-  cancelButton,
-  saveButton,
-  loginButton,
-  inputStyle,
-} from '../buttons';
 
 const loading = {
   margin: '1em',
   fontSize: '24px',
-};
-
-const title = {
-  pageTitle: 'Update Password Screen',
 };
 
 class UpdatePassword extends Component {
@@ -131,22 +115,20 @@ class UpdatePassword extends Component {
     if (error) {
       return (
         <div>
-          <HeaderBar title={title} />
           <p style={loading}>
             There was a problem accessing your data. Please go login again.
           </p>
-          <LinkButtons
-            style={loginButton}
-            buttonText="Go Login"
+          <Button
             link="/login"
-          />
+          >
+            login
+            </Button>
         </div>
       );
     }
     if (loadingUser !== false) {
       return (
         <div>
-          <HeaderBar title={title} />
           <p style={loading}>Loading user data...</p>
         </div>
       );
@@ -157,24 +139,24 @@ class UpdatePassword extends Component {
     if (loadingUser === false) {
       return (
         <div>
-          <HeaderBar title={title} />
           <form className="profile-form" onSubmit={this.updatePassword}>
             <TextField
-              style={inputStyle}
               id="password"
               label="password"
               value={password}
               onChange={this.handleChange('password')}
               type="password"
             />
-            <SubmitButtons buttonStyle={saveButton} buttonText="Save Changes" />
+            <Button type="submit">
+              Save Changes
+              </Button>
           </form>
-          <LinkButtons buttonStyle={homeButton} buttonText="Go Home" link="/" />
-          <LinkButtons
-            buttonStyle={cancelButton}
-            buttonText="Cancel Changes"
+          <Button link="/"> Home </Button>
+          <Button
             link={`/userProfile/${username}`}
-          />
+          >
+            Cancel
+            </Button>
         </div>
       );
     }

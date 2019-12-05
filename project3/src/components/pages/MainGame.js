@@ -191,4 +191,4 @@ class MainGame extends React.Component {
     }
 }
 
-export default MainGame
+export default MainGame;

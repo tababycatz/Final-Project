@@ -3,37 +3,6 @@ const User = require ('../sequelize').User;
 
 require('dotenv').config();
 
-/**
- * @swagger
- * /forgotPassword:
- *   post:
- *     tags:
- *       - Users
- *     name: Forgot Password
- *     summary: Sends an email with a reset password link when a user inevitably forgets their password
- *     consumes:
- *       - application/json
- *     parameters:
- *      - name: body
- *        in: body
- *        schema:
- *          $ref: '#/definitions/User'
- *          type: object
- *          properties:
- *            email:
- *              type: string
- *        required:
- *          - email
- *     responses:
- *       '200':
- *         description: Reset email sent
- *       '400':
- *         description: Email required
- *       '403':
- *         description: Email not found in db
- *
- */
-
 const nodemailer = require('nodemailer');
 
 module.exports = (app) => {

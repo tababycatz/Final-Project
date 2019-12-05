@@ -1,24 +1,17 @@
 import React from 'react';
-import {
-  HeaderBar,
-  LinkButtons,
-  loginButton,
-  registerButton,
-} from '../buttons';
+import Button from '@material-ui/core/Button';
 
-const title = {
-  pageTitle: 'Home',
-};
 
 const Auth = () => (
   <div className="home-page">
-    <HeaderBar title={title} />
-    <LinkButtons
-      buttonText="Register"
-      buttonStyle={registerButton}
-      link="/register"
-    />
-    <LinkButtons buttonText="Login" buttonStyle={loginButton} link="/login" />
+    <Button 
+    variant="outlined" color="primary" link="/register">
+        Register
+      </Button>
+      <Button 
+    variant="outlined" color="secondary" link="/Login">
+        Login
+      </Button>
   </div>
 );
 

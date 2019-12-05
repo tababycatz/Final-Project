@@ -1,20 +1,8 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import {
-  LinkButtons,
-  SubmitButtons,
-  registerButton,
-  homeButton,
-  forgotButton,
-  inputStyle,
-  HeaderBar,
-} from '../buttons';
 
-const title = {
-  pageTitle: 'Forgot Password Screen',
-};
 
 class ForgotPassword extends Component {
   constructor() {
@@ -77,39 +65,31 @@ class ForgotPassword extends Component {
  email, messageFromServer, showNullError, showError 
 } = this.state;
 
+
     return (
       <div>
-        <HeaderBar title={title} />
         <form className="profile-form" onSubmit={this.sendEmail}>
           <TextField
-            style={inputStyle}
             id="email"
             label="email"
             value={email}
             onChange={this.handleChange('email')}
             placeholder="Email Address"
           />
-          <SubmitButtons
-            buttonStyle={forgotButton}
-            buttonText="Send Password Reset Email"
-          />
+          <Button variant="outlined" default>
+          Reset
+          </Button>
         </form>
         {showNullError && (
           <div>
-            <p>The email address cannot be null.</p>
+            <p>This field is required.</p>
           </div>
         )}
-        {showError && (
+        {showError(
           <div>
             <p>
-              That email address isn&apos;t recognized. Please try again or
-              register for a new account.
+              This email is not recognized. Please try again.
             </p>
-            <LinkButtons
-              buttonText="Register"
-              buttonStyle={registerButton}
-              link="/register"
-            />
           </div>
         )}
         {messageFromServer === 'recovery email sent' && (
@@ -117,7 +97,6 @@ class ForgotPassword extends Component {
             <h3>Password Reset Email Successfully Sent!</h3>
           </div>
         )}
-        <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
       </div>
     );
   }

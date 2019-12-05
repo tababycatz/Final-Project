@@ -1,28 +1,14 @@
-/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-
-import {
-  LinkButtons,
-  updateButton,
-  homeButton,
-  loginButton,
-  HeaderBar,
-  forgotButton,
-  inputStyle,
-  SubmitButtons,
-} from '../buttons';
 
 const loading = {
   margin: '1em',
   fontSize: '24px',
 };
 
-const title = {
-  pageTitle: 'Password Reset Screen',
-};
 
 export default class ResetPassword extends Component {
   constructor() {
@@ -116,19 +102,18 @@ export default class ResetPassword extends Component {
     if (error) {
       return (
         <div>
-          <HeaderBar title={title} />
           <div style={loading}>
             <h4>Problem resetting password. Please send another reset link.</h4>
-            <LinkButtons
-              buttonText="Go Home"
-              buttonStyle={homeButton}
+            <Button
               link="/"
-            />
-            <LinkButtons
-              buttonStyle={forgotButton}
-              buttonText="Forgot Password?"
+            >
+              Home
+              </Button>
+            <Button
               link="/forgotPassword"
-            />
+            >
+              Forgot Password
+              </Button>
           </div>
         </div>
       );
@@ -136,27 +121,23 @@ export default class ResetPassword extends Component {
     if (isLoading) {
       return (
         <div>
-          <HeaderBar title={title} />
           <div style={loading}>Loading User Data...</div>
         </div>
       );
     }
     return (
       <div>
-        <HeaderBar title={title} />
         <form className="password-form" onSubmit={this.updatePassword}>
           <TextField
-            style={inputStyle}
             id="password"
             label="password"
             onChange={this.handleChange('password')}
             value={password}
             type="password"
           />
-          <SubmitButtons
-            buttonStyle={updateButton}
-            buttonText="Update Password"
-          />
+          <Button>
+            Update Password
+            </Button>
         </form>
 
         {updated && (
@@ -165,14 +146,14 @@ export default class ResetPassword extends Component {
               Your password has been successfully reset, please try logging in
               again.
             </p>
-            <LinkButtons
-              buttonStyle={loginButton}
-              buttonText="Login"
+            <Button
               link="/login"
-            />
+            >
+              login
+              </Button>
           </div>
         )}
-        <LinkButtons buttonText="Go Home" buttonStyle={homeButton} link="/" />
+        <Button link="/"> Home </Button>
       </div>
     );
   }
