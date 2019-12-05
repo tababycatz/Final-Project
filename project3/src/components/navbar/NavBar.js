@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import PersonIcon from '@material-ui/icons/Person';
 import { makeStyles } from '@material-ui/core/styles';
+import CharacterTab from './components/pages/CharacterTab'
+import MainGame from './components/pages/MainGame'
 
 
 const NavBar = () => {

@@ -1,4 +1,4 @@
-const config = {
+const firebaseConfig = {
     apiKey: "AIzaSyBW7Hu3QVzozED9J9WYLCK8e0QiXxUYtHg",
     authDomain: "dogmud-f5ecb.firebaseapp.com",
     databaseURL: "https://dogmud-f5ecb.firebaseio.com",
@@ -8,4 +8,4 @@ const config = {
     appId: "1:488232860410:web:647850c8ae51ee4300a743"
   };
 
-  export default config;
+export default firebaseConfig;
