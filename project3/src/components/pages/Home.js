@@ -4,6 +4,7 @@ import Navbar from "../navbar/NavBar";
 import "../../style/index.css";
 import Login from "../pages/Login";
 
+
 const Home = () => (
   <div className="main-body">
     <Navbar />

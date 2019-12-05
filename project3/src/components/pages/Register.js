@@ -6,17 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import withFirebaseAuth from 'react-with-firebase-auth'
-import * as firebase from 'firebase/app';
-import 'firebase/auth';
-import firebaseConfig from '../../../config/firebaseConfig';
 import Navbar from "../navbar/NavBar";
-
-const firebaseApp = firebase.initializeApp(firebaseConfig);
-const firebaseAppAuth = firebaseApp.auth();
-const providers = {
-  googleProvider: new firebase.auth.GoogleAuthProvider(),
-};
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -38,6 +28,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const {
+  user,
+  signOut,
+  signInWithGoogle,
+} = this.props;
 
   export default function SignUp() {
     const classes = useStyles();
@@ -47,8 +42,6 @@ const useStyles = makeStyles(theme => ({
     <Navbar />
     <div id="container">
       <div className="row">
-<script src="/__/firebase/7.5.0/firebase-app.js"></script>
-<script src="/__/firebase/init.js"></script>
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -128,6 +121,16 @@ const useStyles = makeStyles(theme => ({
             Sign Up
           </Button>
         </form>
+        {
+        user 
+          ? <p>Hello, {user.displayName}</p>
+          : <p>Please sign in.</p>
+      }
+      {
+        user
+          ? <button onClick={signOut}>Sign out</button>
+          : <button onClick={signInWithGoogle}>Sign in with Google</button>
+      }
       </div>
     </Container>
     </div>

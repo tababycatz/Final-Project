@@ -13,23 +13,22 @@ const providers = {
   googleProvider: new firebase.auth.GoogleAuthProvider(),
 };
 
-render() {
+render(App) {
   const {
     user,
     signOut,
     signIn,
     signinWithGoogle
   } = this.props;
-}
 
-const App = () => (
+return (
   <div className="App">
     <Routes />
     </div>
 );
-
+}
 
 export default withFirebaseAuth({
   providers,
   firebaseAppAuth,
-})(App);
+})(App)
