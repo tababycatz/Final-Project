@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 export default function SignIn() {
   const classes = useStyles();
 
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -58,15 +59,15 @@ export default function SignIn() {
             id="password"
             autoComplete="current-password"
           />
+          <a href="/play">
           <Button
-            type="submit"
             fullWidth
             variant="outlined"
             color="primary"
             className={classes.submit}
           >
             Sign In
-          </Button>
+          </Button></a>
           <Grid container>
             <Grid item xs>
               <Link href="/forgotPassword" variant="body2">

@@ -3,6 +3,18 @@
   font-family: 'Courier New', Courier, monospace;
 }
 
+.miniMapT, .miniMapB{
+ height: 25px;
+}
+.miniMapL, .miniMapR{
+height:25px;
+}
+
+
+.terminal {
+
+}
+
 .App-logo {
   height: 40vmin;
 }

@@ -50,11 +50,6 @@ const NavBar = () => {
                   <PlayArrowIcon color="inherit"/> Play
               </Link>
               </Typography>
-              <Typography variant="h6" className={classes.title}>
-              <Link href="/char" className="nav-link" title='Character' color="inherit">
-                  <PersonIcon color="inherit"/> Character
-              </Link>
-              </Typography>
               </Toolbar>
               </AppBar>
               </div>

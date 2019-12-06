@@ -1,39 +1,29 @@
 import React from 'react';
 
-let mapData = [];
 
 function MiniMap(props){
-    mapData = [];
-    let newBreak = <br></br>
-    for(let i=0;i<9;i++){
-        let newLine = props.map[i];
-        mapData.push(<pre>{newLine}</pre>);
-        console.log(mapData)
-    }
+  
 
-    return(<div>
-        {mapData}
+    return(<div className="miniMap">
         <div className="row">
-            <button onClick={(e) => props.move("north",e)}><div style={{ height:"25px", width:"107px"}}>   
+            <button className="col-sm-6" onClick={(e) => props.move("north",e)}><div className="miniMapT">NORTH
             </div></button>
 
             
         </div>
 
         <div className="row">
-            <button onClick={(e) => props.move("west",e)}><div style={{backgroundColor:"black", height:"75px", width:"25px"}}>
-            </div></button>
+            <button className="col-sm-2"onClick={(e) => props.move("west",e)}><div className="miniMapL">W</div></button>
 
-            <button><div style={{backgroundColor:"black", height:"25px", width:"25px"}}> 
-            </div></button>
+            <div className="miniMapMid col-sm-2"></div>
 
-            <button onClick={(e) => props.move("east",e)}><div style={{backgroundColor:"black", height:"75px", width:"25px"}}>
-            </div></button>
+            <button className="col-sm-2" onClick={(e) => props.move("east",e)}><div className="miniMapR">
+            E</div></button>
         </div>
         <div className="row">
 
-            <button onClick={(e) => props.move("south",e)}><div style={{backgroundColor:"black", height:"25px", width:"75px"}}>
-            </div></button>
+            <button className="col-sm-6"onClick={(e) => props.move("south",e)}><div className="miniMapB">
+            SOUTH</div></button>
         </div>
     
     </div>)

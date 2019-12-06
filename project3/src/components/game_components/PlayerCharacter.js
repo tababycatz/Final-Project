@@ -17,9 +17,12 @@ function PlayerCharacter(props){
 
     console.log(props)
         if(props.info){
-            
+            let newBtn;
+            if(props.item){
+                newBtn = <button onClick={props.dropFunct}className="btn btn-primary">{props.item.object_name}</button>
+            }
             return(
-            <CharacterInfo characterName={props.playerChar.char_name} age={props.playerChar.age} weight={props.playerChar.weight} skills={props.playerChar.skills} />
+            <CharacterInfo characterName={props.playerChar.char_name} age={props.playerChar.age} weight={props.playerChar.weight} skills={props.playerChar.skills} inventory={newBtn}/>
             )
         }
     
