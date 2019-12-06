@@ -29,7 +29,7 @@ class DisplayTerm extends React.Component {
     render() {
         // var rendy = <InputChoice question="THIS IS A QUESTION"/>
         return(
-            <div style={{backgroundColor:"pink", height:"100%", width:"100%"}}>
+            <div className="terminal">
             {this.props.buttons}
             </div>
     )

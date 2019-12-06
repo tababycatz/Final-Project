@@ -27,10 +27,16 @@ export default {
     return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID + "/" + objID))
   },
   dropObj: function(charID){
-    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/pickupobj/" + charID))
+    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/dropobj/" + charID))
   },
   getMap: function(charID) {
     return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/getviewport/" + charID))
+  }, 
+  init: function(){
+    return(axios.get("https://dogmudserv.herokuapp.com/dmxapi/initstate"))
+  },
+  getObjs: function(){
+    return axios.get("https://dogmudserv.herokuapp.com/dmxapi/getobjs")
   }
   
 };

@@ -28,9 +28,20 @@ class MainGame extends React.Component {
         super(props)
 
         let allRms = {};
+        API.init()
+
+        API.getObjs().then(({data:objs}) => {
+            objs.forEach(obj => {
+                if(obj.held_by === this.state.playerID){
+                    this.setState({playerInventory: obj});
+                    console.log(obj)
+                }
+            });
+        })
 
         API.getOneChar(this.state.playerID).then(({data:charObj}) => {
-            this.state = {currentRoomNum: charObj.location}
+            this.state = {currentRoomNum: charObj.location, char:charObj}
+            console.log(this.state.char)
         }).catch(err => console.log(err))
 
 
@@ -41,21 +52,23 @@ class MainGame extends React.Component {
 
         }).catch(err => console.log(err));
 
-        API.getMap(this.state.playerID).then(({data:mapData}) => {
-            this.maps = mapData.map
-            console.log(mapData.map)
-            this.state = {map:this.maps}
-            // console.log(this.state.map)
-        })
         
     }
     
 
     componentDidMount(){
-        API.getOneChar(1).then(({data: char}) => {
+        API.getOneChar(this.state.playerID).then(({data: char}) => {
             this.setState({char})
         }).catch(err => console.log(err));
 
+        API.getObjs().then(({data:objs}) => {
+            objs.forEach(obj => {
+                if(obj.held_by === this.state.playerID){
+                    this.setState({playerInventory: obj});
+                    console.log(obj)
+                }
+            });
+        })
     
         API.getRooms().then(({data:allRooms}) => {
             this.allRms = allRooms;
@@ -65,12 +78,18 @@ class MainGame extends React.Component {
 
         }).catch(err => console.log(err))
         
-
         // this.pullRoom(1)
     }
 
     handleChange(){
         
+    }
+
+    dropObj = () => {
+        API.dropObj(this.state.playerID).then(({data:objRes}) => {
+            console.log(objRes)
+            this.setState({playerInventory:[]})
+        });
     }
 
     interactWithObject = obj_id => {
@@ -107,10 +126,11 @@ class MainGame extends React.Component {
         bttns = []
         API.pickUpObj(this.state.playerID,object.object_id).then(({data:newData}) => {
             console.log(newData);
-            if(newData.status == 1){
+            if(newData.status === 1){
                 this.setState({playerInventory:newData})
                 let responseCard = <Card key="0" type="error" title="Now Holding" body={newData.message} click2={this.pullRoom}/>
                 bttns.push(responseCard)
+                this.setState({playerInventory:object})
                 this.setState({button:bttns});
             } else {
                 let responseCard = <Card key="0" type="error" title="Could not Pick Up" body={"This object is currently: " + newData.message} click2={this.pullRoom} />
@@ -136,7 +156,7 @@ class MainGame extends React.Component {
     movePlayer = dir => {
         API.moveRoom(this.state.playerID,dir).then(({data: res}) => {
             console.log(res)
-            if(res.status == 1){
+            if(res.status === 1){
                 this.setState({currentRoomNum:res.room})
                 this.newRoom()
             } else {
@@ -148,11 +168,7 @@ class MainGame extends React.Component {
     newRoom = () => {
         bttns = []
         var newRoomButton = <Card key="1" type="room" title="New Room Entered"  body={this.state.allR[this.state.currentRoomNum].descript} click1Text="Check Room" click1={this.pullRoom}/>
-        API.getMap(this.state.playerID).then(({data:mapData}) => {
-            this.maps = mapData.map
-            console.log(mapData.map)
-            this.setState({map:this.maps})
-        })
+        
         bttns.push(newRoomButton)
         this.setState({button:bttns})
     }
@@ -176,6 +192,7 @@ class MainGame extends React.Component {
     render(){
 
     return(<div className="container-fluid">
+    <NavBar />
     <div className="row align-items-end">
     <div className="col-md">
         <ReactModal isOpen={this.state.errorModalOpen}><h3>ERROR</h3><br></br><p>you just looked in here</p><button onClick={this.closeModal}>woof</button></ReactModal>
@@ -184,7 +201,7 @@ class MainGame extends React.Component {
 
     <div className="col-md-auto">
     <MiniMap map={this.state.map} move={this.movePlayer}/>
-    <PlayerCharacter info="true" playerChar={this.state.char}/>
+    <PlayerCharacter info="true" item={this.state.playerInventory} dropFunct={this.dropObj} playerChar={this.state.char}/>
     </div>
     </div>
     </div>)
