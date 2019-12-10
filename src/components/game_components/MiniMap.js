@@ -6,7 +6,7 @@ function MiniMap(props){
 
     return(<div className="miniMap">
         <div className="row">
-            <button className="col-sm-6" onClick={(e) => props.move("north",e)}><div className="miniMapT">NORTH
+            <button className="col-sm-6" onClick={(e) => props.move("north",e)}><div className="miniMapT">N
             </div></button>
 
             
@@ -23,7 +23,7 @@ function MiniMap(props){
         <div className="row">
 
             <button className="col-sm-6"onClick={(e) => props.move("south",e)}><div className="miniMapB">
-            SOUTH</div></button>
+            S</div></button>
         </div>
     
     </div>)

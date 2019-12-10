@@ -2,15 +2,15 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "../navbar/NavBar";
 import "../../style/index.css";
-import Login from "../pages/Login";
+import Background from '../pics/bg.png';
+
 
 const Home = () => (
   <div className="main-body">
     <Navbar />
     <div id="container">
-      <div className="row">
-        <Login />
-      </div>
+      <img src={Background} className='dogPaw' alt='dogpaw' />
+      <h2> Welcome to dogMUD. Let's play.</h2>
     </div>
   </div>
   // 

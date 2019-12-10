@@ -7,7 +7,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
-import PersonIcon from '@material-ui/icons/Person';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -17,14 +16,9 @@ const NavBar = () => {
     root: {
       flexGrow: 1,
     },
-    PersonIcon: {
-      marginRight: theme.spacing(6),
-    },
+    
     PlayArrowIcon: {
       marginRight: theme.spacing(4),
-    },
-    LoginButton: {
-      marginRight: theme.spacing(2),
     },
     title: {
       flexGrow: 1,
