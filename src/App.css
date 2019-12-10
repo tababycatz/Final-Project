@@ -1,37 +1,42 @@
+h2 {
+  font-weight: bold;
+}
+a {
+  color: white;
+}
+
 .App {
   text-align: center;
   font-family: 'Courier New', Courier, monospace;
 }
 
 .miniMapT, .miniMapB{
- height: 25px;
+ height: 30px;
 }
+
 .miniMapL, .miniMapR{
-height:25px;
+height:30px;
 }
 
 
-.terminal {
-
-}
-
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.card {
+  width: 80%;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-top: 100px;
+  
 }
 
-.App-link {
-  color: #09d3ac;
+.miniMap {
+  margin-top: 100px;
+  font-size: 20px;
 }
+
+#navbar {
+  background-color: #007fff;
+  font-weight: bold;
+  height: 60px;
+  font-size: 30px;  
+}
+ 
 
 

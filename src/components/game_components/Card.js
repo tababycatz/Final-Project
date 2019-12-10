@@ -3,14 +3,13 @@ import React from 'react'
 class Card extends React.Component{
     constructor(props){
         super(props)
-        // this.interactable = false;
     }
 
 
     render(){
         //change to a switch statement
     let bttnArray = []
-    let backBtn = <button className="btn btn-primary" onClick={this.props.click2}>Go Back</button>  
+    let backBtn = <button className="btn btn-secondary" onClick={this.props.click2}>Go Back</button>  
     bttnArray.push(backBtn)   
         switch(this.props.type){
             case("base"):
@@ -36,7 +35,7 @@ class Card extends React.Component{
                             <p className="card-text">
                                 {this.props.body}
                             </p>
-                            <button className="btn btn-primary" onClick={this.props.click1}>
+                            <button className="btn btn-secondary" onClick={this.props.click1}>
                                 {this.props.click1Text}
                             </button>
                         </div>
@@ -45,7 +44,7 @@ class Card extends React.Component{
         case("objects"): 
              bttnArray = []
             this.props.objects.forEach((obj, index) => {
-                let newBtn = <button key={index} className="btn btn-primary" onClick={(e) => this.props.click1(index,e)}>{obj.object_name}</button>
+                let newBtn = <button key={index} className="btn btn-secondary" onClick={(e) => this.props.click1(index,e)}>{obj.object_name}</button>
                 bttnArray.push(newBtn);
             });
             return(
@@ -64,7 +63,7 @@ class Card extends React.Component{
         case("players"): 
             bttnArray = []
             this.props.players.forEach((char, index) => {
-                let newBtn = <button key={index} className="btn btn-primary" onClick={(e) => this.props.click1(this.props.players[index].character_id,e)}>{char.char_name}</button>
+                let newBtn = <button key={index} className="btn btn-secondary" onClick={(e) => this.props.click1(this.props.players[index].character_id,e)}>{char.char_name}</button>
                 bttnArray.push(newBtn);
             });
 
@@ -106,7 +105,7 @@ class Card extends React.Component{
         case("object"):
             bttnArray = []
             if(this.props.unOwned){
-                let pickUpBtn = <button className="btn btn-primary" onClick={(e) => this.props.click1(this.props.object)}>Pick up</button>
+                let pickUpBtn = <button className="btn btn-secondary" onClick={(e) => this.props.click1(this.props.object)}>Pick up</button>
                 bttnArray.push(pickUpBtn)
             }  
             bttnArray.push(backBtn)            
@@ -142,4 +141,4 @@ class Card extends React.Component{
 }
 }
 
-export default Card
+export default Card;

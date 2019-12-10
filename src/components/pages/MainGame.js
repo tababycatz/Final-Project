@@ -11,7 +11,7 @@ let bttns = [];
 
 class MainGame extends React.Component {
     state = {
-        playerID: 4,
+        playerID: 3,
         char: {},
         currentRoomNum: 3,
         currentRoomInv: {},

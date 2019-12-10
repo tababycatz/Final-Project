@@ -6,23 +6,23 @@ function MiniMap(props){
 
     return(<div className="miniMap">
         <div className="row">
-            <button className="col-sm-6" onClick={(e) => props.move("north",e)}><div className="miniMapT">N
+            <button className="col-md-10" onClick={(e) => props.move("north",e)}><div className="miniMapT">N
             </div></button>
 
             
         </div>
 
         <div className="row">
-            <button className="col-sm-2"onClick={(e) => props.move("west",e)}><div className="miniMapL">W</div></button>
+            <button className="col-md-4"onClick={(e) => props.move("west",e)}><div className="miniMapL">W</div></button>
 
             <div className="miniMapMid col-sm-2"></div>
 
-            <button className="col-sm-2" onClick={(e) => props.move("east",e)}><div className="miniMapR">
+            <button className="col-md-4" onClick={(e) => props.move("east",e)}><div className="miniMapR">
             E</div></button>
         </div>
         <div className="row">
 
-            <button className="col-sm-6"onClick={(e) => props.move("south",e)}><div className="miniMapB">
+            <button className="col-md-10"onClick={(e) => props.move("south",e)}><div className="miniMapB">
             S</div></button>
         </div>
     
