@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "../navbar/NavBar";
 import "../../style/index.css";
 import Background from '../pics/bg.png';

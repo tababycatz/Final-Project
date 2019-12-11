@@ -96,6 +96,7 @@ class Card extends React.Component{
                             <li>Weight: {this.props.char.weight}</li>
                             <li>Skills: {this.props.char.skills}</li>
                             <li>Breed: {this.props.char.breed}</li>
+                            <li>Room: {this.props.char.room}</li>
                         </ul>
                     </p>
                     {bttnArray}

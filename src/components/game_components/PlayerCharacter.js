@@ -1,6 +1,5 @@
 import React from 'react'
 import CharacterInfo from './CharacterInfo'
-import API from '../utils/API'
 
 function PlayerCharacter(props){
     
@@ -22,7 +21,7 @@ function PlayerCharacter(props){
                 newBtn = <button onClick={props.dropFunct}className="btn btn-primary">{props.item.object_name}</button>
             }
             return(
-            <CharacterInfo characterName={props.playerChar.char_name} age={props.playerChar.age} weight={props.playerChar.weight} skills={props.playerChar.skills} inventory={newBtn}/>
+            <CharacterInfo characterName={props.playerChar.char_name} age={props.playerChar.age} weight={props.playerChar.weight} skills={props.playerChar.skills} breed={props.playerChar.breed} room={props.playerChar.room_name} inventory={newBtn}/>
             )
         }
     

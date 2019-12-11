@@ -15,6 +15,12 @@ function CharacterInfo(props){
                     Skills: {props.skills}
                 </li>
                 <li>
+                    Breed: {props.breed}
+                </li>
+                <li>
+                    Room: {props.room}
+                </li>
+                <li>
                     Carrying: {props.inventory}
                 </li>
             </ul>

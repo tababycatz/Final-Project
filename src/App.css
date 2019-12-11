@@ -1,8 +1,17 @@
 h2 {
   font-weight: bold;
 }
+
+h3 {
+  padding-right: 100px;
+}
+
 a {
   color: white;
+}
+
+li {
+  padding-right: 100px;
 }
 
 .App {
@@ -19,7 +28,7 @@ height:30px;
 }
 
 
-.card {
+.card{
   width: 80%;
   justify-content: center;
   margin-top: 100px;
@@ -28,7 +37,13 @@ height:30px;
 
 .miniMap {
   margin-top: 100px;
+  padding-right: 50px;
+  padding-bottom: 80px;
   font-size: 20px;
+}
+
+.terminal {
+  padding-left: 100px;
 }
 
 #navbar {
