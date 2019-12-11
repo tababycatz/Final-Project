@@ -1,13 +1,9 @@
-clientID= 892107161180-jn49fivsohg2vhtm17ef8vcm9nv15dqp.apps.googleusercontent.com;
-clientSecret= VTmGriMQTe6GMifzy4rlwoX2;
-GENERATE_SOURCEMAP=false
-
-## Firebase
-
-apiKey: "AIzaSyBW7Hu3QVzozED9J9WYLCK8e0QiXxUYtHg",
+const firebaseConfig = {
+    apiKey: "AIzaSyBW7Hu3QVzozED9J9WYLCK8e0QiXxUYtHg",
     authDomain: "dogmud-f5ecb.firebaseapp.com",
     databaseURL: "https://dogmud-f5ecb.firebaseio.com",
     projectId: "dogmud-f5ecb",
     storageBucket: "dogmud-f5ecb.appspot.com",
     messagingSenderId: "488232860410",
     appId: "1:488232860410:web:647850c8ae51ee4300a743"
+  };
