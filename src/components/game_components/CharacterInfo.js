@@ -17,9 +17,9 @@ function CharacterInfo(props){
                 <li>
                     Breed: {props.breed}
                 </li>
-                <li>
+                {/* <li>
                     Room: {props.room}
-                </li>
+                </li> */}
                 <li>
                     Carrying: {props.inventory}
                 </li>
