@@ -1,5 +1,7 @@
 h2 {
   font-weight: bold;
+  padding-top: 80px;
+  font-size: 60px;
 }
 
 h3 {
@@ -12,6 +14,10 @@ a {
 
 li {
   padding-right: 100px;
+}
+
+img {
+  padding-top: 80px;
 }
 
 .App {
@@ -29,10 +35,9 @@ height:30px;
 
 
 .card{
-  width: 80%;
-  justify-content: center;
-  margin-top: 100px;
-  
+  width: 90%;
+  height: 200px;
+  justify-content: center;  
 }
 
 .miniMap {
